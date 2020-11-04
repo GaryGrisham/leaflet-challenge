@@ -11,19 +11,19 @@ d3.json(queryUrl, function(data) {
 function chooseColor(depth) {
   switch (depth) {
   case depth > 90:
-    return "#85a832";
+    return "#eb6834";
   case depth > 80:
-    return "red";
+    return "eb9634";
   case depth > 70:
-    return "orange";
+    return "ebb134";
   case depth > 50:
-    return "green";
+    return "#ebd934";
   case depth > 30:
-    return "purple";
+    return "#d3eb34";
   case depth > 10:
-    return "purple";
+    return "#59eb34";
   default:
-    return "black";
+    return "f50707";
   }
 }
 function getRadius(magintuted){
@@ -90,7 +90,7 @@ console.log(earthquakeData)
 // create l. createing a tile
 function createMap(earthquakes) {
 
-  // Define streetmap and darkmap layers
+  // Define streetmap 
   var streetmap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
     attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
     tileSize: 512,
@@ -122,7 +122,7 @@ function createMap(earthquakes) {
   // Pass in our baseMaps and overlayMaps
   // Add the layer control to the map
   L.control.layers(overlayMaps, {
-    collapsed: false
+    collapsed: true
   }).addTo(myMap);
 
   // Set up the legend
@@ -152,5 +152,5 @@ function createMap(earthquakes) {
 
   // Adding legend to the map
   legend.addTo(myMap);
-}
+};
 // activite 4 day 2 for legend.  
