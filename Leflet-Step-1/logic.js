@@ -7,46 +7,55 @@ d3.json(queryUrl, function(data) {
   // Once we get a response, send the data.features object to the createFeatures function
   createFeatures(data.features);
 });
-
+// create a function to choose the color based on depth 
 function chooseColor(depth) {
+  // if (depth >= 90){
+  //   return "#f50707"
+  // }
+  // if (depth <= 80){
+  //   return "#eb9634"
+  // }
+  // if (depth <= 70){
+  //   return "#ebb134"
+  // }
   switch (depth) {
   case depth > 90:
-    return "#eb6834";
-  case depth > 80:
-    return "eb9634";
-  case depth > 70:
-    return "ebb134";
-  case depth > 50:
+    return "#f50707";
+  case depth <= 90:
+    return "#eb9634";
+  case depth <= 70:
+    return "#ebb134";
+  case depth <= 50:
     return "#ebd934";
-  case depth > 30:
+  case depth <= 30:
     return "#d3eb34";
-  case depth > 10:
+  case depth <= 10:
     return "#59eb34";
   default:
-    return "f50707";
+    return "#59eb34";
   }
 }
 function getRadius(magintuted){
   if (magintuted <= 0){
-    return 1
-  } 
-  if (magintuted <= 1){
     return 2
   } 
-  if (magintuted <= 2){
-    return 3
-  } 
-  if (magintuted <= 3){
+  if (magintuted <= 1){
     return 4
   } 
-  if (magintuted <= 4){
-    return 5
-  } 
-  if (magintuted <= 5){
+  if (magintuted <= 2){
     return 6
   } 
+  if (magintuted <= 3){
+    return 8
+  } 
+  if (magintuted <= 4){
+    return 10
+  } 
+  if (magintuted <= 5){
+    return 12
+  } 
   else {
-    return 7
+    return 14
   }
 }
 function createFeatures(earthquakeData) {
@@ -75,7 +84,7 @@ console.log(earthquakeData)
         style: function(feature) {
           return {
             color: "white",
-            // Call the chooseColor function to decide which color to color our neighborhood (color based on borough)
+            // Call the chooseColor function to decide which color to color our circles
             fillColor: chooseColor(feature.geometry.coordinates[2]),
             radius: getRadius(feature.properties.mag),
             fillOpacity: 0.5,
@@ -105,9 +114,9 @@ function createMap(earthquakes) {
 
 
   // Create overlay object to hold our overlay layer
-  var overlayMaps = {
-    Earthquakes: earthquakes
-  };
+  // var overlayMaps = {
+  //   Earthquakes: earthquakes
+  // };
 
   // Create our map, giving it the streetmap and earthquakes layers to display on load
   var myMap = L.map("map", {
@@ -121,33 +130,42 @@ function createMap(earthquakes) {
   // Create a layer control
   // Pass in our baseMaps and overlayMaps
   // Add the layer control to the map
-  L.control.layers(overlayMaps, {
-    collapsed: false
-  }).addTo(myMap);
+  // L.control.layers(overlayMaps, {
+  //   collapsed: false
+  // }).addTo(myMap);
 
   // Set up the legend
   var legend = L.control({ position: "bottomright" });
   legend.onAdd = function() {
     var div = L.DomUtil.create("div", "info legend");
-    var limits = geoJSON.options.limits;
-    var colors = geoJSON.options.colors;
-    var labels = [];
+    // var limits = geoJSON.options.limits;
+    // var colors = geoJSON.options.colors;
+    // var labels = [];
 
+
+    var numlist = [-10, 10, 30, 50, 70, 90]
+    var colorlist = ["#59eb34", "#d3eb34", "#ebd934", "#ebb134", "#eb9634", "#f50707"]
     // Add min & max
-    var legendInfo = "<h1>Earthquake Depth</h1>" +
-      "<div class=\"labels\">" +
-        "<div class=\"min\">" + limits[0] + "</div>" +
-        "<div class=\"max\">" + limits[limits.length - 1] + "</div>" +
-      "</div>";
+    // var legendInfo = "<h1>Earthquake Depth</h1>" +
+    //   "<div class=\"labels\">" +
+    //     "<div class=\"min\">" + limits[0] + "</div>" +
+    //     "<div class=\"max\">" + limits[limits.length - 1] + "</div>" +
+    //   "</div>";
 
-    div.innerHTML = legendInfo;
+    // div.innerHTML = legendInfo;
 
-    limits.forEach(function(limit, index) {
-      labels.push("<li style=\"background-color: " + colors[index] + "\"></li>");
-    });
+    // limits.forEach(function(limit, index) {
+    //   labels.push("<li style=\"background-color: " + colors[index] + "\"></li>");
+    // });
+    for (var i=0; i<numlist.length; i=i+1){
+      console.log(i)
+      div.innerHTML += "<li style='background: " + colorlist[i] + "'></li> " 
+      + numlist[i] + (numlist[i + 1] ? "&ndash;" + numlist[i + 1] + "<br>" : "+");
 
-    div.innerHTML += "<ul>" + labels.join("") + "</ul>";
-    return div;
+    }
+    return div; 
+    // div.innerHTML += "<ul>" + labels.join("") + "</ul>";
+    // return div;
   };
 
   // Adding legend to the map
