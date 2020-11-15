@@ -26,23 +26,24 @@ function chooseColor(depth) {
     return "#59eb34";
   }
 }
-function getRadius(magintuted){
-  if (magintuted <= 0){
+console.log()
+function getRadius(magnitude){
+  if (magnitude <= 0){
     return 2
   } 
-  if (magintuted <= 1){
+  if (magnitude <= 1){
     return 4
   } 
-  if (magintuted <= 2){
+  if (magnitude <= 2){
     return 6
   } 
-  if (magintuted <= 3){
+  if (magnitude <= 3){
     return 8
   } 
-  if (magintuted <= 4){
+  if (magnitude <= 4){
     return 10
   } 
-  if (magintuted <= 5){
+  if (magnitude <= 5){
     return 12
   } 
   else {
@@ -60,7 +61,7 @@ console.log(earthquakeData)
     feature.properties.mag +
     "<br/> Depth: " +
     feature.geometry.coordinates[2] +
-    // abouve is the magintuted
+    // abouve is the magnitude
       "</h3><hr><p>" +   "<br/> Time: " + new Date(feature.properties.time) + "</p>");
   }
 
