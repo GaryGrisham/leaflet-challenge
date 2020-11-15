@@ -7,7 +7,7 @@ d3.json(queryUrl, function(data) {
   createFeatures(data.features);
 });
 // create a function to choose the color based on depth 
-// Why wont this work!!!!
+
 function chooseColor(depth) {
   switch (depth) {
   case depth > 90:
