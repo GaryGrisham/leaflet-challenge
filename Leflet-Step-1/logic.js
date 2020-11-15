@@ -26,7 +26,7 @@ function chooseColor(depth) {
     return "#59eb34";
   }
 }
-console.log()
+console.log(chooseColor)
 function getRadius(magnitude){
   if (magnitude <= 0){
     return 2
@@ -117,25 +117,11 @@ function createMap(earthquakes) {
   var legend = L.control({ position: "bottomright" });
   legend.onAdd = function() {
     var div = L.DomUtil.create("div", "info legend");
-    // var limits = geoJSON.options.limits;
-    // var colors = geoJSON.options.colors;
-    // var labels = [];
 
 
     var numlist = [-10, 10, 30, 50, 70, 90]
     var colorlist = ["#59eb34", "#d3eb34", "#ebd934", "#ebb134", "#eb9634", "#f50707"]
-    // Add min & max
-    // var legendInfo = "<h1>Earthquake Depth</h1>" +
-    //   "<div class=\"labels\">" +
-    //     "<div class=\"min\">" + limits[0] + "</div>" +
-    //     "<div class=\"max\">" + limits[limits.length - 1] + "</div>" +
-    //   "</div>";
 
-    // div.innerHTML = legendInfo;
-
-    // limits.forEach(function(limit, index) {
-    //   labels.push("<li style=\"background-color: " + colors[index] + "\"></li>");
-    // });
     for (var i=0; i<numlist.length; i=i+1){
       console.log(i)
       div.innerHTML += "<li style='background: " + colorlist[i] + "'></li> " 
@@ -143,8 +129,7 @@ function createMap(earthquakes) {
 
     }
     return div; 
-    // div.innerHTML += "<ul>" + labels.join("") + "</ul>";
-    // return div;
+
   };
 
   // Adding legend to the map
