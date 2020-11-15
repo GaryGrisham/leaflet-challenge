@@ -60,7 +60,7 @@ console.log(earthquakeData)
    "<br/> Magnitude: " +
     feature.properties.mag +
     "<br/> Depth: " +
-    feature.geometry.coordinates[0] +
+    feature.geometry.coordinates[2] +
     // above is the magnitude
       "</h3><hr><p>" +   "<br/> Time: " + new Date(feature.properties.time) + "</p>");
   }
@@ -77,7 +77,7 @@ console.log(earthquakeData)
           return {
             color: "white",
             // Call the chooseColor function to decide which color to color our circles
-            fillColor: chooseColor(feature.geometry.coordinates[0]),
+            fillColor: chooseColor(feature.geometry.coordinates[2]),
             radius: getRadius(feature.properties.mag),
             fillOpacity: 0.5,
             weight: 1.5
