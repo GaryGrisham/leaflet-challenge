@@ -9,15 +9,6 @@ d3.json(queryUrl, function(data) {
 });
 // create a function to choose the color based on depth 
 function chooseColor(depth) {
-  // if (depth >= 90){
-  //   return "#f50707"
-  // }
-  // if (depth <= 80){
-  //   return "#eb9634"
-  // }
-  // if (depth <= 70){
-  //   return "#ebb134"
-  // }
   switch (depth) {
   case depth > 90:
     return "#f50707";
@@ -80,7 +71,7 @@ console.log(earthquakeData)
           return L.circleMarker(latlng);
       },
     onEachFeature: onEachFeature,
-        // Style each feature (in this case a neighborhood)
+        // Style each feature 
         style: function(feature) {
           return {
             color: "white",
@@ -110,15 +101,8 @@ function createMap(earthquakes) {
   });
 
 
-  // Define a baseMaps object to hold our base layers
 
-
-  // Create overlay object to hold our overlay layer
-  // var overlayMaps = {
-  //   Earthquakes: earthquakes
-  // };
-
-  // Create our map, giving it the streetmap and earthquakes layers to display on load
+  // Create our map, giving it the earthquakes layers to display on load
   var myMap = L.map("map", {
     center: [
       37.09, -95.71
@@ -127,12 +111,6 @@ function createMap(earthquakes) {
     layers: [streetmap, earthquakes]
   });
 
-  // Create a layer control
-  // Pass in our baseMaps and overlayMaps
-  // Add the layer control to the map
-  // L.control.layers(overlayMaps, {
-  //   collapsed: false
-  // }).addTo(myMap);
 
   // Set up the legend
   var legend = L.control({ position: "bottomright" });
@@ -171,4 +149,3 @@ function createMap(earthquakes) {
   // Adding legend to the map
   legend.addTo(myMap);
 };
-// activite 4 day 2 for legend.  
