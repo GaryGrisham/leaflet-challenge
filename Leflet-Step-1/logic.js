@@ -26,7 +26,7 @@ function chooseColor(depth) {
     return "#59eb34";
   }
 }
-console.log(chooseColor)
+
 function getRadius(magnitude){
   if (magnitude <= 0){
     return 2
