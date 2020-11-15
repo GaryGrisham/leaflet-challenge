@@ -61,7 +61,7 @@ console.log(earthquakeData)
     feature.properties.mag +
     "<br/> Depth: " +
     feature.geometry.coordinates[2] +
-    // abouve is the magnitude
+    // above is the magnitude
       "</h3><hr><p>" +   "<br/> Time: " + new Date(feature.properties.time) + "</p>");
   }
 
