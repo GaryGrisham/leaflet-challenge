@@ -23,7 +23,7 @@ function chooseColor(depth) {
   case depth <= 10:
     return "#59eb34";
   default:
-    return "#59eb34";
+    return "#59eb33";
   }
 }
 
@@ -60,7 +60,7 @@ console.log(earthquakeData)
    "<br/> Magnitude: " +
     feature.properties.mag +
     "<br/> Depth: " +
-    feature.geometry.coordinates[2] +
+    feature.geometry.coordinates +
     // above is the magnitude
       "</h3><hr><p>" +   "<br/> Time: " + new Date(feature.properties.time) + "</p>");
   }
@@ -77,7 +77,7 @@ console.log(earthquakeData)
           return {
             color: "white",
             // Call the chooseColor function to decide which color to color our circles
-            fillColor: chooseColor(feature.geometry.coordinates[2]),
+            fillColor: chooseColor(feature.geometry.coordinates),
             radius: getRadius(feature.properties.mag),
             fillOpacity: 0.5,
             weight: 1.5
